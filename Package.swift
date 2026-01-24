@@ -3,20 +3,19 @@
 
 import PackageDescription
 
-// This package distributes OnairosSDK as a pre-compiled binary framework
+// This package distributes OnairosSwiftSDK as a pre-compiled binary framework
 // Source code is kept private; only the compiled XCFramework is distributed
 // Distribution repo: https://github.com/zd819/OnairosSwift
 
 let package = Package(
-    name: "OnairosSDK",
+    name: "OnairosSwiftSDK",
     platforms: [
-        .iOS(.v14),
-        .macOS(.v10_15)
+        .iOS(.v14)
     ],
     products: [
         .library(
-            name: "OnairosSDK",
-            targets: ["OnairosSDK"]
+            name: "OnairosSwiftSDK",
+            targets: ["OnairosSwiftSDK"]
         ),
     ],
     dependencies: [
@@ -27,14 +26,12 @@ let package = Package(
     ],
     targets: [
         .binaryTarget(
-            name: "OnairosSDK",
+            name: "OnairosSwiftSDK",
             // Binary releases are uploaded to GitHub Releases
-            // URL format: https://github.com/zd819/OnairosSwift/releases/download/v{VERSION}/OnairosSDK.xcframework.zip
-            url: "https://github.com/zd819/OnairosSwift/releases/download/v1.0.0/OnairosSDK.xcframework.zip",
-            // Checksum is automatically updated by GitHub Actions after each build
-            // To compute manually: swift package compute-checksum OnairosSDK.xcframework.zip
-            checksum: "PLACEHOLDER_CHECKSUM_WILL_BE_UPDATED_ON_FIRST_RELEASE"
+            // URL format: https://github.com/zd819/OnairosSwift/releases/download/v{VERSION}/OnairosSwiftSDK.xcframework.zip
+            url: "https://github.com/zd819/OnairosSwift/releases/download/v1.0.0/OnairosSwiftSDK.xcframework.zip",
+            // To compute: swift package compute-checksum OnairosSwiftSDK.xcframework.zip
+            checksum: "a64d8d8b53c5fff518a654a850592b3483a5a726af22c29c0bf27f2be1e65559"
         ),
     ]
 )
-

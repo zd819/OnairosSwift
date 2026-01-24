@@ -1,12 +1,12 @@
-# OnairosSDK
+# OnairosSwiftSDK
 
-OnairosSDK is a Swift SDK for integrating Onairos authentication and AI personality services into your iOS/macOS applications.
+OnairosSwiftSDK is a Swift SDK for integrating Onairos authentication and AI personality services into your iOS applications.
 
 ## Installation
 
 ### Swift Package Manager
 
-Add OnairosSDK to your project using Swift Package Manager:
+Add OnairosSwiftSDK to your project using Swift Package Manager:
 
 1. In Xcode, go to **File → Add Package Dependencies...**
 2. Enter the repository URL:
@@ -24,25 +24,25 @@ dependencies: [
 ]
 ```
 
-Then add `OnairosSDK` to your target's dependencies:
+Then add `OnairosSwiftSDK` to your target's dependencies:
 
 ```swift
 .target(
     name: "YourApp",
-    dependencies: ["OnairosSDK"]
+    dependencies: ["OnairosSwiftSDK"]
 )
 ```
 
 ## Requirements
 
-- iOS 14.0+ / macOS 10.15+
+- iOS 14.0+
 - Swift 5.9+
 - Xcode 15.0+
 
 ## Usage
 
 ```swift
-import OnairosSDK
+import OnairosSwiftSDK
 
 // Initialize the SDK
 let onairos = OnairosSDK.shared
@@ -68,4 +68,3 @@ For detailed documentation and integration guides, visit our [developer portal](
 ## License
 
 Copyright © 2026 Onairos. All rights reserved.
-
