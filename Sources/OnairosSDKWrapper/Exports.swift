@@ -3,3 +3,9 @@
 // since Swift Package Manager binaryTargets cannot declare dependencies directly.
 
 @_exported import OnairosSDK
+
+// Import and re-export dependencies to ensure they are linked
+// These are required by the OnairosSDK binary
+@_exported import SocketIO
+@_exported import Lottie
+@_exported import GoogleSignIn
