@@ -3,8 +3,8 @@
 
 import PackageDescription
 
-// This package distributes OnairosSwiftSDK as a pre-compiled binary framework
-// Source code is kept private; only the compiled XCFramework is distributed
+// OnairosSwiftSDK - Pre-compiled binary with all dependencies statically linked
+// Customers only need to add this ONE package - no additional dependencies required
 // Distribution repo: https://github.com/zd819/OnairosSwift
 
 let package = Package(
@@ -15,37 +15,16 @@ let package = Package(
     products: [
         .library(
             name: "OnairosSwiftSDK",
-            targets: ["OnairosSDKWrapper"]  // Points to wrapper which links everything
+            targets: ["OnairosSDKBinary"]
         ),
-    ],
-    dependencies: [
-        // Dependencies that the SDK requires (will be linked via wrapper target)
-        .package(url: "https://github.com/socketio/socket.io-client-swift", from: "16.0.0"),
-        .package(url: "https://github.com/google/GoogleSignIn-iOS", from: "7.0.0"),
-        .package(url: "https://github.com/airbnb/lottie-ios.git", from: "4.3.0"),
     ],
     targets: [
-        // Wrapper target that bridges the binary with its dependencies
-        // This is necessary because binaryTarget cannot declare dependencies directly
-        .target(
-            name: "OnairosSDKWrapper",
-            dependencies: [
-                "OnairosSDKBinary",
-                .product(name: "SocketIO", package: "socket.io-client-swift"),
-                .product(name: "GoogleSignIn", package: "GoogleSignIn-iOS"),
-                .product(name: "Lottie", package: "lottie-ios"),
-            ],
-            path: "Sources/OnairosSDKWrapper"
-        ),
-        // The actual compiled SDK binary
         .binaryTarget(
             name: "OnairosSDKBinary",
-            // Binary releases are uploaded to GitHub Releases
-            // URL format: https://github.com/zd819/OnairosSwift/releases/download/v{VERSION}/OnairosSwiftSDK.xcframework.zip
-            // v1.0.1: Fixed module stability for Swift 6.2 compatibility - renamed main class to Onairos
-            url: "https://github.com/zd819/OnairosSwift/releases/download/v1.0.1/OnairosSwiftSDK.xcframework.zip",
-            // To compute: swift package compute-checksum OnairosSwiftSDK.xcframework.zip
-            checksum: "4769bd418d1ef98869119da430815d2e8a35f9bcc782c7e543bff4cee360c455"
+            // v1.0.2: All dependencies (SocketIO, GoogleSignIn, Lottie) are now statically linked
+            // Customers no longer need to add any additional packages
+            url: "https://github.com/zd819/OnairosSwift/releases/download/v1.0.2/OnairosSwiftSDK.xcframework.zip",
+            checksum: "b4f70e56f10f1a40dee5cc0448a24b81cdbdeb1a2f8a52bebc94b4cb27cb3926"
         ),
     ]
 )
