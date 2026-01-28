@@ -21,10 +21,10 @@ let package = Package(
     targets: [
         .binaryTarget(
             name: "OnairosSDKBinary",
-            // v1.0.2: All dependencies (SocketIO, GoogleSignIn, Lottie) are now statically linked
-            // Customers no longer need to add any additional packages
-            url: "https://github.com/zd819/OnairosSwift/releases/download/v1.0.2/OnairosSwiftSDK.xcframework.zip",
-            checksum: "b4f70e56f10f1a40dee5cc0448a24b81cdbdeb1a2f8a52bebc94b4cb27cb3926"
+            // v1.0.3: Fixed resource bundle loading for XCFramework distribution
+            // All dependencies statically linked, resources properly bundled
+            url: "https://github.com/zd819/OnairosSwift/releases/download/v1.0.3/OnairosSwiftSDK.xcframework.zip",
+            checksum: "b99fcfbc8bc41333e74e6b909388476c81ad7f7c170236f34cb99637cd06267d"
         ),
     ]
 )
