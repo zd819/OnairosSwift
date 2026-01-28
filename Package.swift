@@ -21,10 +21,10 @@ let package = Package(
     targets: [
         .binaryTarget(
             name: "OnairosSDKBinary",
-            // v1.0.5: Fixed image loading for loose PNG files in SPM bundles
+            // v1.0.6: Enhanced bundle finding with debug logging
             // All dependencies statically linked, resources properly bundled
-            url: "https://github.com/zd819/OnairosSwift/releases/download/v1.0.5/OnairosSwiftSDK.xcframework.zip",
-            checksum: "524a91db41349f00126942b77533d077b0d0cb9f006fa1eb649bbcb85033241b"
+            url: "https://github.com/zd819/OnairosSwift/releases/download/v1.0.6/OnairosSwiftSDK.xcframework.zip",
+            checksum: "0293354b1c2cf526083679e79a12e3f4c4b1472e07aa40179a57a35e4c2a7ccc"
         ),
     ]
 )
