@@ -29,9 +29,10 @@ let package = Package(
             name: "OnairosSwiftSDK",
             // Binary releases are uploaded to GitHub Releases
             // URL format: https://github.com/zd819/OnairosSwift/releases/download/v{VERSION}/OnairosSwiftSDK.xcframework.zip
-            url: "https://github.com/zd819/OnairosSwift/releases/download/v1.0.0/OnairosSwiftSDK.xcframework.zip",
+            // v1.0.1: Fixed module stability for Swift 6.2 compatibility - renamed main class to Onairos
+            url: "https://github.com/zd819/OnairosSwift/releases/download/v1.0.1/OnairosSwiftSDK.xcframework.zip",
             // To compute: swift package compute-checksum OnairosSwiftSDK.xcframework.zip
-            checksum: "a64d8d8b53c5fff518a654a850592b3483a5a726af22c29c0bf27f2be1e65559"
+            checksum: "4769bd418d1ef98869119da430815d2e8a35f9bcc782c7e543bff4cee360c455"
         ),
     ]
 )
