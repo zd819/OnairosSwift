@@ -23,7 +23,7 @@ let package = Package(
             name: "OnairosSDKBinary",
             // v3.0.73: UI polish, LinkedIn URL sync, consent screen with 4 data tiers, ChatGPT 20 conversations
             // All dependencies statically linked, resources properly bundled
-            url: "https://github.com/zd819/OnairosSwift/releases/download/v3.0.73/OnairosSwiftSDK.xcframework.zip",
+            url: "https://github.com/zd819/OnairosSwift/releases/download/v1.0.9/OnairosSwiftSDK.xcframework.zip",
             checksum: "f0c5325932150e116aba1dea67a9b35d420684bba37091cbf20550664b21de67"
         ),
     ]
