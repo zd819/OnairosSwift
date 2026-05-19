@@ -21,10 +21,10 @@ let package = Package(
     targets: [
         .binaryTarget(
             name: "OnairosSDKBinary",
-            // v1.1.3: Bump deployment target to iOS 18, consent completion fix
+            // v1.1.4: Modal/logout controls + returning user routing fixes
             // All dependencies statically linked, resources properly bundled
-            url: "https://github.com/zd819/OnairosSwift/releases/download/v1.1.3/OnairosSwiftSDK.xcframework.zip",
-            checksum: "c925e9e8336f40ab1eaf80edb21858da181e659366a4ab1692b97c805d095eb4"
+            url: "https://github.com/zd819/OnairosSwift/releases/download/v1.1.4/OnairosSwiftSDK.xcframework.zip",
+            checksum: "404972e0479ec03f6748634a283155a5b898714812c8eef2f72fa2d8ebe19625"
         ),
     ]
 )
