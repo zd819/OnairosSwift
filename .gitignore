@@ -15,7 +15,7 @@ DerivedData/
 .swiftpm/
 Package.resolved
 
-# Build outputs (we only commit the Package.swift, not the actual framework)
+# Build outputs (release ZIP is intentionally tracked for push-to-publish)
 *.xcframework/
 build/
 

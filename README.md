@@ -1,69 +1,38 @@
 # OnairosSwiftSDK
 
-OnairosSwiftSDK is a Swift SDK for integrating Onairos authentication and AI personality services into your iOS applications.
+Native Onairos onboarding for iOS, distributed as a precompiled XCFramework with its dependencies and resources included.
 
 ## Installation
 
-### Swift Package Manager
+In Xcode, choose **File → Add Package Dependencies**, enter `https://github.com/zd819/OnairosSwift`, and select version **1.1.8 or later**. Add the **OnairosSwiftSDK** product to your app target.
 
-Add OnairosSwiftSDK to your project using Swift Package Manager:
-
-1. In Xcode, go to **File → Add Package Dependencies...**
-2. Enter the repository URL:
-   ```
-   https://github.com/zd819/OnairosSwift
-   ```
-3. Select the version you want to use
-4. Click **Add Package**
-
-Or add it to your `Package.swift`:
-
-```swift
-dependencies: [
-    .package(url: "https://github.com/zd819/OnairosSwift", from: "1.0.0")
-]
-```
-
-Then add `OnairosSwiftSDK` to your target's dependencies:
-
-```swift
-.target(
-    name: "YourApp",
-    dependencies: ["OnairosSwiftSDK"]
-)
-```
-
-## Requirements
-
-- iOS 14.0+
-- Swift 5.9+
-- Xcode 15.0+
+Requires iOS 17 or later. The package manifest uses Swift tools 5.9; the binary was built with Xcode 26.6. Device arm64 and simulator arm64/x86_64 are included.
 
 ## Usage
 
 ```swift
-import OnairosSwiftSDK
+import OnairosSDK
 
-// Initialize the SDK
-let onairos = OnairosSDK.shared
-
-// Configure with your API key
-onairos.configure(apiKey: "your-api-key")
-
-// Present the onboarding flow
-onairos.presentOnboarding(from: viewController) { result in
-    switch result {
-    case .success(let user):
-        print("User authenticated: \(user)")
-    case .failure(let error):
-        print("Error: \(error)")
-    }
+Onairos.shared.initialize(config: OnairosConfig(apiKey: "your-onairos-api-key"))
+let button = Onairos.shared.createConnectButton { result in
+    // Handle completion or cancellation.
 }
+// Add button to your view and position it with your layout constraints.
 ```
 
-## Documentation
+The default button title is **Continue with Onairos**. The SDK defaults to `https://api2.onairos.uk`, with test mode disabled.
 
-For detailed documentation and integration guides, visit our [developer portal](https://docs.onairos.uk).
+## Google sign-in
+
+Pass your app's iOS OAuth client ID using `OnairosConfig(apiKey:googleClientID:)`, register its reversed client ID URL scheme in your app's Info.plist, and forward authentication callback URLs to `Onairos.shared.handleURL(url)`. The SDK includes Google sign-in; no separate Google implementation or manual `-ObjC` linker flag is required. Your OAuth client must be registered for the host app's bundle ID.
+
+## Publishing
+
+A push to **main** that changes the release inputs runs **Publish Swift SDK**. It verifies the ZIP against Package.swift and release/release.json, creates the version tag and GitHub Release at that commit, uploads the binary, and verifies the uploaded checksum. GitHub Actions must be enabled for this repository. No separate personal token is required; the workflow uses the repository's GitHub token.
+
+The checked-in release ZIP is intentional: it makes pushing main sufficient to publish the already-validated artifact. Do not replace a published version. For the next release, update the ZIP, version, checksum, notes, and manifest together. Re-running publication for an existing version fails rather than overwriting it.
+
+See release/PROVENANCE.md for the build source and release/NOTES.md for changes.
 
 ## License
 

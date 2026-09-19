@@ -1,0 +1,52 @@
+name: Publish Swift SDK
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - Package.swift
+      - release/**
+      - scripts/verify-release.py
+      - .github/workflows/publish.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: swift-sdk-release
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify release artifact and manifest
+        id: release
+        run: python3 scripts/verify-release.py
+      - name: Publish version and binary
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          RELEASE_TAG: ${{ steps.release.outputs.tag }}
+        run: |
+          set -euo pipefail
+          # Existing versions are immutable: never overwrite a published asset.
+          gh release create "$RELEASE_TAG" release/OnairosSwiftSDK.xcframework.zip \
+            --target "$GITHUB_SHA" \
+            --title "OnairosSwift $RELEASE_TAG" \
+            --notes-file release/NOTES.md \
+            --latest
+      - name: Verify uploaded binary
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          RELEASE_TAG: ${{ steps.release.outputs.tag }}
+          EXPECTED_CHECKSUM: ${{ steps.release.outputs.checksum }}
+        run: |
+          set -euo pipefail
+          gh release download "$RELEASE_TAG" --pattern OnairosSwiftSDK.xcframework.zip --dir "$RUNNER_TEMP/published-sdk"
+          printf '%s  %s\n' "$EXPECTED_CHECKSUM" "$RUNNER_TEMP/published-sdk/OnairosSwiftSDK.xcframework.zip" | sha256sum --check

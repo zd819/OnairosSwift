@@ -21,10 +21,10 @@ let package = Package(
     targets: [
         .binaryTarget(
             name: "OnairosSDKBinary",
-            // v1.1.6: Welcome polish + Gemini consent fix
+            // v1.1.8: Native onboarding polish and approval feedback
             // All dependencies statically linked, resources properly bundled
-            url: "https://github.com/zd819/OnairosSwift/releases/download/v1.1.6/OnairosSwiftSDK.xcframework.zip",
-            checksum: "75333d4bde00d49690f089cfabd56d94ca4f6f755465d9e0d7dfca27f69d0155"
+            url: "https://github.com/zd819/OnairosSwift/releases/download/v1.1.8/OnairosSwiftSDK.xcframework.zip",
+            checksum: "1371824836ee136cde0ad347e5eb74024ccb75a7364815da31e8d6d190ca998e"
         ),
     ]
 )
