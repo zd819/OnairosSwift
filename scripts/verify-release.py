@@ -37,6 +37,9 @@ with zipfile.ZipFile(archive) as package:
     for name in interfaces:
         interface = package.read(name).decode()
         assert "$NonescapableTypes" not in interface
+        assert "addingToPersona: Swift.Bool" in interface, f"Missing add-to-persona API in {name}"
+        assert re.search(r"createConnectButton\(text:.*completion:", interface), f"Missing completion-taking button API in {name}"
+        assert not re.search(r"^import (Lottie|SocketIO|GoogleSignIn|Starscream)\b", interface, re.M), f"Exposed bundled dependency in {name}"
         for api in ["createConnectButton", "public init(apiKey:", "handleURL", "struct OnboardingData"]:
             assert api in interface, f"Missing {api} in {name}"
 print(f"Validated v{version}: {checksum}")

@@ -1,11 +1,13 @@
-# OnairosSwift 1.1.8
+# OnairosSwift 1.2.0
 
-- Refined native onboarding, permission artwork, button feedback, and account menus.
-- Synchronized approval animation and audio, with progressive PIN requirement feedback.
-- Onboarding closes through X; dragging or tapping the backdrop no longer dismisses it.
-- Google sign-in no longer requires host apps to add the -ObjC linker flag.
-- Email sending and verification feedback respect actual server results.
+- Add to an existing persona from inside a consuming app using `OnairosConfig(addingToPersona: true)`. Existing connections are retained; this mode allows additions without disconnection. Hosts can use the button title **Add to your Onairos persona**.
+- Returning persona unlock automatically attempts Face ID once for an enrolled, matching device credential, with secret-code entry on cancellation or failure. Optional local enrollment follows successful secret-code creation; the backend still authorizes every unlock.
+- Improve native app approval, permission-scoped data fetching, dismissal handling, and the explicit confirmation shown when returning to the consumer app.
+- Refine onboarding and Smart Filter interactions, platform connection animations, and chat-import progress reporting.
+- Restore connected persona artwork and fix email/verification-code paste handling.
 
-Requires iOS 17+. Includes device arm64 and simulator arm64/x86_64 binaries, bundled dependencies, artwork, fonts, and approval audio. Import OnairosSDK using the OnairosSwiftSDK package product.
+Requires iOS 17+. Includes device arm64 and simulator arm64/x86_64 binaries with dependencies and resources bundled. Import `OnairosSDK` using the `OnairosSwiftSDK` package product. Production remains the default backend; test mode remains disabled by default.
 
-Validation: 104 regression tests passed; standalone device and simulator consumer builds passed; Google account chooser and cancellation verified without extra linker flags. Full production authentication was not repeated during release packaging.
+For Face ID, the consuming app must provide `NSFaceIDUsageDescription`. Local Face ID enrollment is separate from the server-side **Remember my PIN** preference. Explicit SDK logout removes the local saved credential.
+
+Validation: all 181 regression tests passed. Device and simulator release builds and standalone binary-only consumer builds passed. Exported APIs, resource presence, archive integrity, and checksum were verified; bundled onboarding fonts/artwork were checked in the simulator. Real-device Face ID and a full live production authentication flow were not exercised during packaging and remain post-publication acceptance checks.
