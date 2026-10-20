@@ -30,7 +30,7 @@ with zipfile.ZipFile(archive) as package:
         details = plistlib.loads(package.read(framework + "Info.plist"))
         assert details["CFBundleShortVersionString"] == version
         assert details["MinimumOSVersion"] == "17.0"
-        for resource in ["approval-success.wav", "DMSans.ttf", "parity-lock.json"]:
+        for resource in ["approval-success.wav", "DMSans.ttf", "parity-lock.json", "appExperienceCopy.json", "sephora-extract.js", "sephora-normalize.js", "sephoralogo.png", "tiktok.png"]:
             assert framework + "OnairosSDK_OnairosSDK.bundle/" + resource in package.namelist()
     interfaces = [n for n in package.namelist() if n.endswith(".swiftinterface")]
     assert interfaces
@@ -40,7 +40,7 @@ with zipfile.ZipFile(archive) as package:
         assert "addingToPersona: Swift.Bool" in interface, f"Missing add-to-persona API in {name}"
         assert re.search(r"createConnectButton\(text:.*completion:", interface), f"Missing completion-taking button API in {name}"
         assert not re.search(r"^import (Lottie|SocketIO|GoogleSignIn|Starscream)\b", interface, re.M), f"Exposed bundled dependency in {name}"
-        for api in ["createConnectButton", "public init(apiKey:", "handleURL", "struct OnboardingData"]:
+        for api in ["createConnectButton", "public init(apiKey:", "handleURL", "struct OnboardingData", "DevicePersonalization", "NativeConnectors", "personaRefresh", "requestedScopes"]:
             assert api in interface, f"Missing {api} in {name}"
 print(f"Validated v{version}: {checksum}")
 if os.environ.get("GITHUB_OUTPUT"):

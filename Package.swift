@@ -21,10 +21,10 @@ let package = Package(
     targets: [
         .binaryTarget(
             name: "OnairosSDKBinary",
-            // v1.2.0: Persona additions, automatic Face ID unlock, and approval flows
+            // v1.3.0: React Native parity, consent, native imports, and password flow refinements
             // All dependencies statically linked, resources properly bundled
-            url: "https://github.com/zd819/OnairosSwift/releases/download/v1.2.0/OnairosSwiftSDK.xcframework.zip",
-            checksum: "ca22b9494e3b0da3e12638886dc3f8897ee70ef661031d36b8b4aa015e8302bd"
+            url: "https://github.com/zd819/OnairosSwift/releases/download/v1.3.0/OnairosSwiftSDK.xcframework.zip",
+            checksum: "762a010fff2d744f105b636d45c6078218e656f33b61addc8f38b75041f9e240"
         ),
     ]
 )

@@ -4,7 +4,7 @@ Native Onairos onboarding for iOS, distributed as a precompiled XCFramework with
 
 ## Installation
 
-In Xcode, choose **File → Add Package Dependencies**, enter `https://github.com/zd819/OnairosSwift`, and select version **1.2.0 or later**. Add the **OnairosSwiftSDK** product to your app target.
+In Xcode, choose **File → Add Package Dependencies**, enter `https://github.com/zd819/OnairosSwift`, and select version **1.3.0 or later**. Add the **OnairosSwiftSDK** product to your app target.
 
 Requires iOS 17 or later. The package manifest uses Swift tools 5.9; the binary was built with Xcode 26.6. Device arm64 and simulator arm64/x86_64 are included.
 
@@ -38,11 +38,17 @@ let addButton = Onairos.shared.createConnectButton(text: "Add to your Onairos pe
 
 Use `addingToPersona: false` (the default) for normal onboarding. SDK Lab is a separate development app and is not part of this binary.
 
-## Face ID and secret-code unlock
+## Face ID and password unlock
 
-Add `NSFaceIDUsageDescription` to the consuming app's Info.plist to enable Face ID. After successful secret-code creation, users can opt into saving a local copy protected by the current biometric enrollment and the device passcode. When a later persona unlock requires that code, Face ID is attempted automatically once. Failure, cancellation, or unavailable biometrics leaves manual secret-code entry available. The backend must still verify the code and grant access.
+Add `NSFaceIDUsageDescription` to the consuming app's Info.plist to enable Face ID. After successful password creation, users can opt into saving a local copy protected by the current biometric enrollment and the device passcode. When a later persona unlock requires that code, Face ID is attempted automatically once. Failure, cancellation, or unavailable biometrics leaves manual password entry available. The backend must still verify the code and grant access.
 
-Local Face ID enrollment is separate from the server-side **Remember my PIN** choice. Explicit SDK logout clears the saved local credential. A valid session does not gain an extra Face ID prompt simply because the SDK is reopened.
+Local Face ID enrollment is separate from the server-side **Remember my password** choice. Explicit SDK logout clears the saved local credential. A valid session does not gain an extra Face ID prompt simply because the SDK is reopened.
+
+## New in 1.3.0
+
+Welcome and consent interactions now align with the reviewed React Native flows, with password terminology and smoother transitions. Hosts can configure `appType`, `traitIntent`, `requestedScopes`, `connectedPlatforms`, and `personaRefresh`. The connection snapshot accepts an explicit empty set; refresh retains existing connections and offers reimports for supported manual sources.
+
+TikTok supports browser authorization, Sephora supports explicit shopping import, and `NativeConnectors.shared.configure` accepts optional host-provided TikTok/Discord adapters. Discord requires an adapter; official provider SDKs are not included in the binary. `DevicePersonalization` uses an exchanged approval token and requires preferences permission and compatible backend/device support.
 
 ## Google sign-in
 
