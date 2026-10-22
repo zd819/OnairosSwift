@@ -4,7 +4,7 @@ Native Onairos onboarding for iOS, distributed as a precompiled XCFramework with
 
 ## Installation
 
-In Xcode, choose **File → Add Package Dependencies**, enter `https://github.com/zd819/OnairosSwift`, and select version **1.3.0 or later**. Add the **OnairosSwiftSDK** product to your app target.
+In Xcode, choose **File → Add Package Dependencies**, enter `https://github.com/zd819/OnairosSwift`, and select version **1.4.0 or later**. Add the **OnairosSwiftSDK** product to your app target.
 
 Requires iOS 17 or later. The package manifest uses Swift tools 5.9; the binary was built with Xcode 26.6. Device arm64 and simulator arm64/x86_64 are included.
 
@@ -65,3 +65,9 @@ See release/PROVENANCE.md for the build source and release/NOTES.md for changes.
 ## License
 
 Copyright © 2026 Onairos. All rights reserved.
+
+## Insufficient personality or preferences data
+
+Users can complete onboarding when personality or preference data is insufficient. Inspect `data.userData?["trainingError"]` and `data.userData?["dataErrors"]` in the successful onboarding result. The error code is `INSUFFICIENT_DATA`, with `isTrainingBlocked=false`; consent completion does not imply the requested profile/model is ready. With auto-fetch enabled, `apiResponse` also carries the terminal error.
+
+Foreground fast training remains the default. `backgroundLoadData=true` hands pending training metadata to your app and skips the SDK training screen.

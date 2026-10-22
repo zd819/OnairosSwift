@@ -21,10 +21,10 @@ let package = Package(
     targets: [
         .binaryTarget(
             name: "OnairosSDKBinary",
-            // v1.3.0: React Native parity, consent, native imports, and password flow refinements
+            // v1.4.0: Nonblocking personality and preference data errors
             // All dependencies statically linked, resources properly bundled
-            url: "https://github.com/zd819/OnairosSwift/releases/download/v1.3.0/OnairosSwiftSDK.xcframework.zip",
-            checksum: "762a010fff2d744f105b636d45c6078218e656f33b61addc8f38b75041f9e240"
+            url: "https://github.com/zd819/OnairosSwift/releases/download/v1.4.0/OnairosSwiftSDK.xcframework.zip",
+            checksum: "f48e6f38ec16fcd8837fcb12027f987a4b417f9f1bb6ecfcd60f98c47695dcb7"
         ),
     ]
 )

@@ -1,4 +1,6 @@
 {
-  "version": "1.3.0",
-  "sha256": "762a010fff2d744f105b636d45c6078218e656f33b61addc8f38b75041f9e240"
+  "version": "1.4.0",
+  "sha256": "f48e6f38ec16fcd8837fcb12027f987a4b417f9f1bb6ecfcd60f98c47695dcb7",
+  "sourceCommit": "2b4d1eead4a13c35544177f1279ecd182709b94d",
+  "validationRun": "https://github.com/zd819/Onairos-Swift/actions/runs/39724301941"
 }

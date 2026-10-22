@@ -1,15 +1,10 @@
-# OnairosSwift 1.3.0
+# OnairosSwift 1.4.0
 
-- Align welcome copy and rotating examples with the React Native SDK. Refine trust-row spacing and animated consent disclosures; keep disclosure separate from permission selection and raw sharing opt-in.
-- Use password terminology throughout creation, unlock, remembered credentials, Face ID prompts, and errors. Resolve create-versus-unlock before leaving the preceding screen to remove the intermediate checking-screen flash.
-- Honor host-provided connected-source snapshots, including empty snapshots. Support persona refresh for connected Swift manual sources while retaining existing connections.
-- Protect native raw-chat exports through bounded backend privacy jobs with receipt validation, account checks, cancellation, and cleanup.
-- Add permission-scoped device-personalization request/get/cancel/open APIs and route device model responses through them.
-- Add TikTok system-browser authorization and optional host-provided official TikTok/Discord SDK adapter support. Add explicit Sephora shopping import with rounded artwork and authenticated storage.
-- Preserve existing add-to-persona, automatic returning-user Face ID, password fallback, and app-approval flows.
+- Insufficient model data now lets users continue through consent and complete onboarding without a warning screen. The developer receives `trainingError`, `trainingGuard`, `isTrainingBlocked: false`, and `dataErrors` in completion `userData`; `apiResponse` contains the terminal error when auto-fetch is enabled. Unavailable personality profiles or preferences are not marked ready. Standard personality requests below 5 points and allowlisted requests below 3 points use this same nonblocking result; thresholds remain backend-owned and unchanged.
+- Stop retrying terminal insufficient-data responses from consent handoff, final fetch and training polling. Keep authentication and authorization failures separate.
+- Clear the terminal result when a user explicitly starts new training, and preserve the connection-required screen for `NO_CONNECTIONS`.
+- Retain foreground fast training by default: `backgroundLoadData=false`, `trainingScreenMode=.fast`. Background loading returns pending metadata and uses no training screen.
 
-Requires iOS 17+. Includes device arm64 and simulator arm64/x86_64 binaries with dependencies and resources bundled. Import `OnairosSDK` using the `OnairosSwiftSDK` package product. Production remains the default backend; test mode is disabled by default.
+Requires iOS 17+. Includes device arm64 and simulator arm64/x86_64 binaries, dependencies and resources. Import `OnairosSDK` through the `OnairosSwiftSDK` package product.
 
-TikTok requires the consuming app's registered callback URL. Discord requires a host adapter. Device personalization and protected raw imports require their corresponding backend support. This release does not make the Swift and React Native platform catalogs identical.
-
-Validation: 198 source regression tests passed. Release SDK builds and standalone binary-only consumer builds passed for device and simulator. Public interfaces, new resources, archive integrity and checksum were verified. The SDK Lab was run against this exact local binary, and the user reported a successful simulator walkthrough. Physical-device Face ID and every individual live connector were not verified during packaging.
+Validation: coordinator and consent-handoff regression suites, static device/simulator builds, exported-interface checks, package resource verification, archive integrity and SHA-256 checks. No physical-device or live-provider test was run for this change.
